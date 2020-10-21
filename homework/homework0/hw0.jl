@@ -13,6 +13,20 @@ macro bind(def, element)
     end
 end
 
+# ╔═╡ d6ee91ea-e750-11ea-1260-31ebf3ec6a9b
+# add (ie install) a package to our environment
+begin
+	# Pkg.add("Compose")
+	# call `using` so that we can use it in our code
+	using Compose
+end
+
+# ╔═╡ 5acd58e0-e856-11ea-2d3d-8329889fe16f
+begin
+	Pkg.add("PlutoUI")
+	using PlutoUI
+end
+
 # ╔═╡ fafae38e-e852-11ea-1208-732b4744e4c2
 md"_homework 0, version 2_"
 
@@ -41,12 +55,6 @@ First of all, **_welcome to the course!_** We are excited to teach you about rea
 
 Before we start next week, we'd like everyone to **submit this zeroth homework assignment**. It will not affect your grade, but it will help us get everything running smoothly when the course starts. If you're stuck or don't have much time, just fill in your name and ID and submit 🙂
 """
-
-# ╔═╡ 094e39c8-e6ce-11ea-131b-07c4a1199edf
-
-
-# ╔═╡ 31a8fbf8-e6ce-11ea-2c66-4b4d02b41995
-
 
 # ╔═╡ 339c2d5c-e6ce-11ea-32f9-714b3628909c
 md"## Exercise 1 - _Square root by Newton's method_
@@ -164,23 +172,9 @@ A package contains a coherent set of functionality that you can often use a blac
 # ╔═╡ 851c03a4-e7a4-11ea-1652-d59b7a6599f0
 # setting up an empty package environment
 begin
-	import Pkg
-	Pkg.activate(mktempdir())
-	Pkg.Registry.update()
-end
-
-# ╔═╡ d6ee91ea-e750-11ea-1260-31ebf3ec6a9b
-# add (ie install) a package to our environment
-begin
-	Pkg.add("Compose")
-	# call `using` so that we can use it in our code
-	using Compose
-end
-
-# ╔═╡ 5acd58e0-e856-11ea-2d3d-8329889fe16f
-begin
-	Pkg.add("PlutoUI")
-	using PlutoUI
+	# import Pkg
+	# Pkg.activate(mktempdir())
+	# Pkg.Registry.update()
 end
 
 # ╔═╡ dbc4da6a-e7b4-11ea-3b70-6f2abfcab992
@@ -221,15 +215,7 @@ area_sierpinski(1) = 0.??
 
 # ╔═╡ ca8d2f72-e7b6-11ea-1893-f1e6d0a20dc7
 function area_sierpinski(n)
-	
-	area = 1
-	
-	while n > 0
-		area = (3 * area) / 4
-		n = n - 1
-	end
-	
-	return area
+	return (3 / 4) ^ n
 end
 
 # ╔═╡ 71c78614-e7bc-11ea-0959-c7a91a10d481
@@ -324,8 +310,6 @@ has area **$(area_sierpinski(n))**
 # ╟─cdff6730-e785-11ea-2546-4969521b33a7
 # ╠═7308bc54-e6cd-11ea-0eab-83f7535edf25
 # ╟─a2181260-e6cd-11ea-2a69-8d9d31d1ef0e
-# ╟─094e39c8-e6ce-11ea-131b-07c4a1199edf
-# ╟─31a8fbf8-e6ce-11ea-2c66-4b4d02b41995
 # ╟─339c2d5c-e6ce-11ea-32f9-714b3628909c
 # ╟─56866718-e6ce-11ea-0804-d108af4e5653
 # ╠═bccf0e88-e754-11ea-3ab8-0170c2d44628

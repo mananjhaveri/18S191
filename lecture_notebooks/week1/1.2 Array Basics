@@ -1,0 +1,154 @@
+### A Pluto.jl notebook ###
+# v0.12.4
+
+using Markdown
+using InteractiveUtils
+
+# ╔═╡ 161339d0-12c8-11eb-2a09-3550c09ef06b
+begin
+	# Pkg.add(["Images", "ImageMagick"])
+	using Images
+end
+
+# ╔═╡ 40cd8480-12c5-11eb-072b-0b59ec4b43b8
+md"# Array Basics"
+
+# ╔═╡ 36336870-12c8-11eb-188a-b1d16ac07b87
+md"### Importing libraries"
+
+# ╔═╡ 0d6564c0-12c8-11eb-3dd8-e9c394f8e1f0
+begin 
+	import Pkg
+end
+
+# ╔═╡ 48cce9c0-12c8-11eb-21f4-9fc059cfbb5a
+md"### Array Basics"
+
+# ╔═╡ 5f845f20-12c5-11eb-00c0-3370c3ffcf8a
+# vector 
+v = [1, 2, 3, 4]
+
+# ╔═╡ 6e0b6572-12c5-11eb-2d79-13aa2ff9a43a
+size(v)
+
+# ╔═╡ 7544c2f0-12c5-11eb-034e-056788bd5f98
+# array
+w = [1 2 3
+	 4 5 6]
+
+# ╔═╡ 93bf7ef0-12c5-11eb-395b-efceab7e235a
+size(w)
+
+# ╔═╡ 97b71ef0-12c5-11eb-3289-01e4f28375a7
+# indexing from 1
+w[1, 1]
+
+# ╔═╡ b27aed72-12c5-11eb-349d-0b6d6013765c
+w[:, 1]
+
+# ╔═╡ b5eae6e0-12c5-11eb-163d-09dee9d0f193
+# random numbers in an arary
+a_random = rand(1:9, 3, 4)
+
+# ╔═╡ 1e4d7770-12c6-11eb-04da-a16852f31052
+a1_random_emo = string.(rand("💣💥👑🐼🍕🏆🎯🛎️📽️🎎", 3, 4)) 
+
+# ╔═╡ 5e27bfe2-12c6-11eb-023e-e5babefa5154
+function pretty(M::Matrix{T} where T<:String)
+	nax_length = maximum(length.(M))
+	dv = "<div style='display:flex;flex-directon:row'>"
+	HTML(dv*join([join("<div style='idth:40px; text-align:center'>".*M[i, :].*" </div>", "  ") for i in 1:size(M, 1)]
+			, "</div>$dv")*"</div>")
+end
+
+# ╔═╡ 4d096ce0-12c6-11eb-20de-d95ec13da886
+a2_random_emo = string.(rand("💥👑🐼🍕🏆🎯", 3, 4)) |> pretty
+
+# ╔═╡ 5a49c260-12c6-11eb-3eb4-7d4e35a55c25
+# colors OP
+colors_5 = distinguishable_colors(5)
+
+# ╔═╡ 4882fa60-12c6-11eb-0f89-7b6753d9af0c
+a3_random_colors = rand(colors_5, 5, 5)
+
+# ╔═╡ 42799160-12c6-11eb-1c5e-5d42b23e171b
+colors_10 = distinguishable_colors(10)
+
+# ╔═╡ 37df0780-12c6-11eb-03bd-1331fde29905
+a4_random_colors = rand(colors_10, 10, 10)
+
+# ╔═╡ 5f4ea920-12c5-11eb-0968-2d4fad2c014d
+# images
+begin 
+	dhoni = load(download("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT6sCuu5eg-c0WtvL0nwOoghanJOMypdfLUoA&usqp=CAU"))
+	kohli = load(download("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWWGZgPVdzWZppJfzg8rqSWRd-Gfjz1eD_Lw&usqp=CAU"))
+end
+
+# ╔═╡ a6873f60-12c9-11eb-20e2-d52234d9b3d7
+a5_mahirat = rand([dhoni, kohli], 5, 5)
+
+# ╔═╡ b6c54f10-12ca-11eb-048d-1b4acd827fee
+begin
+	temp_mahirat = fill(dhoni, 3, 3)
+	temp_mahirat[1, 1] = kohli
+	temp_mahirat[2, 2] = kohli
+	temp_mahirat[3, 3,] = kohli
+	temp_mahirat
+end
+
+# ╔═╡ 9b4b2180-12cd-11eb-02a3-876ddda517d8
+# horizontal concat
+[temp_mahirat temp_mahirat]
+
+# ╔═╡ e62c7140-12cd-11eb-09aa-6d03f80c6da3
+# vertical concat 
+[temp_mahirat; temp_mahirat]
+
+# ╔═╡ 01dce9b0-12ce-11eb-0ed0-eb6bfadf777d
+# khichdi
+[a4_random_colors a4_random_colors; a4_random_colors a4_random_colors]
+
+# ╔═╡ 1bc79da0-12cb-11eb-066b-2f9213efc9fa
+md"### Comprehensions"
+
+# ╔═╡ 295f8900-12cb-11eb-1521-d9c4d7900c1c
+multi_table = [i*j for i = 1:4, j = 1:4]
+
+# ╔═╡ 09246d70-12cd-11eb-3edc-e7ff7108e24a
+# element wise
+multi_table.^2
+
+# ╔═╡ 415c9660-12cb-11eb-13c9-2f3568fa3c16
+# matrix multiplication
+multi_table ^ 2
+
+# ╔═╡ Cell order:
+# ╟─40cd8480-12c5-11eb-072b-0b59ec4b43b8
+# ╟─36336870-12c8-11eb-188a-b1d16ac07b87
+# ╠═0d6564c0-12c8-11eb-3dd8-e9c394f8e1f0
+# ╠═161339d0-12c8-11eb-2a09-3550c09ef06b
+# ╟─48cce9c0-12c8-11eb-21f4-9fc059cfbb5a
+# ╠═5f845f20-12c5-11eb-00c0-3370c3ffcf8a
+# ╠═6e0b6572-12c5-11eb-2d79-13aa2ff9a43a
+# ╠═7544c2f0-12c5-11eb-034e-056788bd5f98
+# ╠═93bf7ef0-12c5-11eb-395b-efceab7e235a
+# ╠═97b71ef0-12c5-11eb-3289-01e4f28375a7
+# ╠═b27aed72-12c5-11eb-349d-0b6d6013765c
+# ╠═b5eae6e0-12c5-11eb-163d-09dee9d0f193
+# ╠═1e4d7770-12c6-11eb-04da-a16852f31052
+# ╠═4d096ce0-12c6-11eb-20de-d95ec13da886
+# ╠═5e27bfe2-12c6-11eb-023e-e5babefa5154
+# ╠═5a49c260-12c6-11eb-3eb4-7d4e35a55c25
+# ╠═4882fa60-12c6-11eb-0f89-7b6753d9af0c
+# ╠═42799160-12c6-11eb-1c5e-5d42b23e171b
+# ╠═37df0780-12c6-11eb-03bd-1331fde29905
+# ╠═5f4ea920-12c5-11eb-0968-2d4fad2c014d
+# ╠═a6873f60-12c9-11eb-20e2-d52234d9b3d7
+# ╠═b6c54f10-12ca-11eb-048d-1b4acd827fee
+# ╠═9b4b2180-12cd-11eb-02a3-876ddda517d8
+# ╠═e62c7140-12cd-11eb-09aa-6d03f80c6da3
+# ╠═01dce9b0-12ce-11eb-0ed0-eb6bfadf777d
+# ╟─1bc79da0-12cb-11eb-066b-2f9213efc9fa
+# ╠═295f8900-12cb-11eb-1521-d9c4d7900c1c
+# ╠═09246d70-12cd-11eb-3edc-e7ff7108e24a
+# ╠═415c9660-12cb-11eb-13c9-2f3568fa3c16

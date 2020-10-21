@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.11.12
+# v0.12.4
 
 using Markdown
 using InteractiveUtils
@@ -194,17 +194,20 @@ philip = load(philip_file)
 # ╔═╡ 7703b032-ebca-11ea-3074-0b80a077078e
 philip
 
+# ╔═╡ 768847ce-12b7-11eb-0dd9-f7570aa55a39
+[
+	philip             philip[:,end:-1:1]
+	philip[end:-1:1,:] philip[end:-1:1,end:-1:1]
+]
+
 # ╔═╡ 7eff3522-ebca-11ea-1a65-59e66a4e72ab
 typeof(philip)
 
 # ╔═╡ c9cd6c04-ebca-11ea-0990-5fa19ff7ed97
-RGBX(0.9, 0.1, 0.1)
+RGBX(0.1, 0.2, 0.5)
 
 # ╔═╡ 0d873d9c-e93b-11ea-2425-1bd79677fb97
 md"##"
-
-# ╔═╡ 6b09354a-ebb9-11ea-2d5a-3b75c5ae7aa9
-
 
 # ╔═╡ 2d6c434e-e93b-11ea-2678-3b9db4975089
 md"##"
@@ -395,11 +398,26 @@ begin
 	[color, redify(color)]
 end
 
+# ╔═╡ 5dd25fd0-12b9-11eb-13e9-5b2b284332fd
+function blue_bomb(image)
+	return RGB(0, 0, image.b)
+end
+
+
+# ╔═╡ 5d5a70ae-12b9-11eb-1482-23da24a31078
+begin 
+	temp_pixel = RGB(0.9, 0.1, 0.5)
+	[temp_pixel, blue_bomb(temp_pixel)]
+end
+
 # ╔═╡ 98412a36-e93b-11ea-1954-f1c105c6ed4a
 md"##"
 
 # ╔═╡ 3c32efde-e938-11ea-1ae4-5d88290f5311
 redify.(philip)
+
+# ╔═╡ 9b23b370-12b9-11eb-1850-1b6469055d88
+blue_bomb.(philip)
 
 # ╔═╡ 4b26e4e6-e938-11ea-2635-6d4fc15e13b7
 md"## Transforming an image
@@ -410,6 +428,9 @@ md"## Transforming an image
 "
 
 
+
+# ╔═╡ 9b8788e0-12ba-11eb-0448-177f4a71e18e
+size(head)
 
 # ╔═╡ c12e0928-e93b-11ea-0922-2b590a99ee89
 md"##"
@@ -450,6 +471,12 @@ poor_phil = decimate(head, 5)
 
 # ╔═╡ cd5721d0-ede6-11ea-0918-1992c69bccc6
 repeat(poor_phil, repeat_count, repeat_count)
+
+# ╔═╡ 34c9ceb0-12ba-11eb-111c-97e840d86759
+poor_phil_10 = decimate(head, 10)
+
+# ╔═╡ 513cfade-12ba-11eb-3a14-8b49c82e5bfd
+size(poor_phil_10)
 
 # ╔═╡ b8daeea0-ec79-11ea-34b5-3f13e8a56a42
 md"# Appendix"
@@ -729,8 +756,8 @@ grant = decimate(process_raw_camera_data(raw_camera_data), 2)
 # ╟─1697a756-e93d-11ea-0b6e-c9c78d527993
 # ╟─af28faca-ebb7-11ea-130d-0f94bf9bd836
 # ╠═9529bc40-e93c-11ea-2587-3186e0978476
-# ╟─ee1d1596-e94a-11ea-0fb4-cd05f62471d3
 # ╠═6aa73286-ede7-11ea-232b-63e052222ecd
+# ╟─ee1d1596-e94a-11ea-0fb4-cd05f62471d3
 # ╠═9a843af8-e93c-11ea-311b-1bc6d5b58492
 # ╟─8ab9a978-e8c9-11ea-2476-f1ef4ba1b619
 # ╟─38c54bfc-e8cb-11ea-3d52-0f02452f8ba1
@@ -745,10 +772,10 @@ grant = decimate(process_raw_camera_data(raw_camera_data), 2)
 # ╠═6e0fefb6-e8d4-11ea-1f9b-e7a3db40df39
 # ╠═9c359212-ec79-11ea-2d7e-0124dad5f127
 # ╠═7703b032-ebca-11ea-3074-0b80a077078e
+# ╠═768847ce-12b7-11eb-0dd9-f7570aa55a39
 # ╠═7eff3522-ebca-11ea-1a65-59e66a4e72ab
 # ╠═c9cd6c04-ebca-11ea-0990-5fa19ff7ed97
 # ╟─0d873d9c-e93b-11ea-2425-1bd79677fb97
-# ╠═6b09354a-ebb9-11ea-2d5a-3b75c5ae7aa9
 # ╟─2d6c434e-e93b-11ea-2678-3b9db4975089
 # ╠═2b14e93e-e93b-11ea-25f1-5f565f80e778
 # ╟─0bdc6058-e8d5-11ea-1889-3f706cea7a1f
@@ -785,10 +812,16 @@ grant = decimate(process_raw_camera_data(raw_camera_data), 2)
 # ╟─095ced62-e938-11ea-1169-939dc7136fd0
 # ╠═31f3605a-e938-11ea-3a6d-29a185bbee31
 # ╠═2744a556-e94f-11ea-2434-d53c24e59285
+# ╠═5dd25fd0-12b9-11eb-13e9-5b2b284332fd
+# ╠═5d5a70ae-12b9-11eb-1482-23da24a31078
 # ╟─98412a36-e93b-11ea-1954-f1c105c6ed4a
 # ╠═3c32efde-e938-11ea-1ae4-5d88290f5311
+# ╠═9b23b370-12b9-11eb-1850-1b6469055d88
 # ╟─4b26e4e6-e938-11ea-2635-6d4fc15e13b7
 # ╠═41fa85c0-e939-11ea-1ad8-79805a2083bb
+# ╠═34c9ceb0-12ba-11eb-111c-97e840d86759
+# ╠═513cfade-12ba-11eb-3a14-8b49c82e5bfd
+# ╠═9b8788e0-12ba-11eb-0448-177f4a71e18e
 # ╟─c12e0928-e93b-11ea-0922-2b590a99ee89
 # ╟─ff5dc538-e938-11ea-058f-693d6b016640
 # ╠═fbe11200-e938-11ea-12e9-6125c1b56b25

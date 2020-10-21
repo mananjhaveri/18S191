@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.11.13
+# v0.12.4
 
 using Markdown
 using InteractiveUtils
@@ -55,12 +55,6 @@ begin
 	Pkg.activate(mktempdir())
 end
 
-# ╔═╡ 74b008f6-ed6b-11ea-291f-b3791d6d1b35
-begin
-	Pkg.add(["Images", "ImageMagick"])
-	using Images
-end
-
 # ╔═╡ 6b30dc38-ed6b-11ea-10f3-ab3f121bf4b8
 begin
 	Pkg.add("PlutoUI")
@@ -69,6 +63,12 @@ end
 
 # ╔═╡ 67461396-ee0a-11ea-3679-f31d46baa9b4
 md"_We set up Images.jl again:_"
+
+# ╔═╡ 74b008f6-ed6b-11ea-291f-b3791d6d1b35
+begin
+	Pkg.add(["Images", "ImageMagick"])
+	# using Images
+end
 
 # ╔═╡ 540ccfcc-ee0a-11ea-15dc-4f8120063397
 md"""
